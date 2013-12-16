@@ -3,8 +3,6 @@ import math
 proc primes*(target: int): seq[int] =
   let sz = int(ceil(target/2))
   var sieve = newseq[bool](sz)
-
-  let maxv = target
   let stop = int(sqrt(float(target)))
   var n = 3
   var accum = newseq[int]()
