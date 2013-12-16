@@ -8,6 +8,7 @@ proc primes*(target: int): seq[int] =
   var accum = newseq[int]()
   accum.add(2)
   sieve[0] = true
+  accum.add(3)
   while n < stop:
 
     let start = n*n
