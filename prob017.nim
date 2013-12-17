@@ -1,5 +1,7 @@
 
 proc numberToString*(n: int): string =
+  if n < 0:
+    return "negative " & numberToString(abs(n))
   if n == 0:
     return "zero"
   if n < 20:
@@ -88,9 +90,11 @@ proc numberToString*(n: int): string =
       else:
      
         return numberToString(f) & " " & x[1] & " " & numberToString(rem)
-        
-when ismainModule:
-  echo(numberToString(738))
-  echo(numberToString(3738))
-  echo(numberToString(1000))
-  echo(numberToString(738234395))
+  
+var c = 0      
+for x in 1..1000:
+  let s = numberToString(x)
+  for z in s:
+    if z >= 'a' and z <= 'z':
+      c += 1
+echo($c)
