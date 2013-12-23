@@ -17,7 +17,7 @@ while true:
   if c >= 500:
     echo(n)
     break
-  echo(n," ",c," ",x)
+  #echo(n," ",c," ",x)
 
   n = n + x
   x += 1
