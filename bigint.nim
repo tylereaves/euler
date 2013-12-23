@@ -33,3 +33,16 @@ converter toBigInt*(x: string): TBigInt =
   for i in coutndown(len(x) -1,i):
     digits.add(parseInt(x[i]))
   return TBigInt(sign: sign, digits:digits)
+
+
+proc `$` (x: TBigInt): string =
+  var s = newseq[string]()
+  if x.sign:
+    s &= "-"
+  for a in x.digits:
+
+
+  if x.sign:
+    s &= "-"
+  return join(reverse(s))
+#proc `+` (a: TBigInt, b: TBigInt): TBigInt =
