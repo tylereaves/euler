@@ -5,8 +5,8 @@ import strutils
 type
   PBigInt* = ref TBigInt
   TBigInt* = object
-    sign: bool
-    digits: seq[int8]
+    sign*: bool
+    digits*: seq[int8]
 
 
 converter toTBigInt*(x: int): TBigInt = 
