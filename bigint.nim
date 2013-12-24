@@ -40,7 +40,7 @@ proc `[]` (x: TBigInt, i: int): int8 =
   else:
     return 0
 
-proc `$` (x: TBigInt): string =
+proc `$`* (x: TBigInt): string =
   var x = x
   compact(x)
   var s = len(x.digits)
@@ -57,7 +57,39 @@ proc `$` (x: TBigInt): string =
 proc abs(a: TBigInt): TBigInt =
   return TBigInt(sign: false, digits: a.digits)
 
-proc `+` (a1: TBigInt, a2: TBigInt): TBigInt =
+proc `==`* (a1: TBigInt, a2: TBigInt): bool = 
+  let maxl = max(len(a1.digits),len(a2.digits))-1
+  for x in countdown(maxl,0):
+    if a1[x] != a2[x]:
+      return false
+  return true
+
+proc `>`* (a1: TBigInt, a2: TBigInt): bool = 
+  let maxl = max(len(a1.digits),len(a2.digits))-1
+  for x in countdown(maxl,0):
+    if a1[x] > a2[x]:
+      return true
+  return false
+when false:
+  proc `-`* (a1: TBigInt, a2: TBigInt): TBigInt = 
+    var newd = newseq[int8]()
+    var a = abs(a1)
+    var b = abs(a2)
+    var borrow = 0
+    let maxl = max(len(a.digits),len(b.digits))-1
+    for x in 0..maxl:
+      let d = (a[x]-borrow) - b[x]
+      if d < 0:
+        borrow = 1
+        d = d + 10
+        newd.add(int8(d))
+      else:
+        newd.add(int8(d))
+    if a1 > a2:
+      return sign(false)
+
+
+proc `+`* (a1: TBigInt, a2: TBigInt): TBigInt =
   #if a.sign == b.sign:
   #  var newd = newseq[int8]()
   #  return TBigInt(sign: a.sign, digits: newd)

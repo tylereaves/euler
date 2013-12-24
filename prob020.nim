@@ -1,7 +1,8 @@
+#Per Wolfram
+#http://mathworld.wolfram.com/LatticePath.html
 
-var n = 1
+import math
 
-for x in 1..100:
-  n = n * x
+let sum = binom(40,20)
 
-  echo(n)
+echo($sum)
